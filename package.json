@@ -7,10 +7,6 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "NODE_ENV=development NODE_CONFIG_DIR=./configs/app node app"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://jujube0: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@github.com/SomaChatbot26/ChatBot26.git"
-  },
   "author": "soma26",
   "license": "ISC",
   "bugs": {
