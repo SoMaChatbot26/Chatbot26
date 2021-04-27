@@ -2,6 +2,7 @@
   "name": "chatbot26",
   "version": "1.0.0",
   "description": "",
+  "private": true,
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -16,6 +17,10 @@
   "dependencies": {
     "axios": "^0.21.1",
     "config": "^3.3.6",
-    "express": "^4.17.1"
+    "express": "^4.17.1",
+    "body-parser": "~1.18.2",
+    "cookie-parser": "~1.4.3",
+    "debug": "~2.6.9",
+    "morgan": "~1.9.0"
   }
 }
