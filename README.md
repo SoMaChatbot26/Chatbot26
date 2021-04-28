@@ -34,9 +34,9 @@
 
 ## 🤔 How to use
 ### 1. 가위바위보 게임
-<span align="center">
+<p align="center">
 <img width="544" alt="image" src="https://user-images.githubusercontent.com/54823396/116364389-1eea2700-a83f-11eb-988e-f044de0b459f.png">
-</span>
+</p>
 
 (1) 메인 메세지입니다. ```가위 바위 보```를 클릭하면 게임에 진입할 수 있습니다.
 
