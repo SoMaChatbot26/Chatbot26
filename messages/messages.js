@@ -10,7 +10,7 @@ const mainMsg = (conversationId) => {
 			},
 			{
 				type: "image_link",
-				url: "https://limitcone.com/images/img_cjsd_banner360p.png"
+				url: "https://swm-chatbot-maoezt-okflk2.run.goorm.io/img_cjsd_banner360p.png"
 			},
 			{
 			  "type": "text",

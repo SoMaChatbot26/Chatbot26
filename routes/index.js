@@ -21,7 +21,7 @@ let db = {
 		timestamp: 1619497965,
 	},
 };
-console.log(db);
+// console.log(db);
 
 // 임시
 let tmp = {};
@@ -56,9 +56,15 @@ let tmp = {};
 
 // 지정 이메일로 초기 메세지 보내기 (테스팅용)
 router.get('/teamOnly', async (req, res, next) => {
-	const emails = [
-		"moonki1107@naver.com",
-	];
+	let emails = [];
+	
+	if (req.query.to) {
+		emails = req.query.to.split(",");
+	} else {
+		// emails.push("kwpark96@naver.com");
+		// emails.push("kians2@naver.com");
+	}
+	
 	const users = await Promise.all(
 		emails.map((email) => libKakaoWork.getUserByEmail({ email: email }))
 	);
@@ -93,8 +99,8 @@ router.post('/request', async (req, res, next) => {
 // /callback : message 응답하기
 router.post('/callback', async (req, res, next) => {
 	const { message, action_name, action_time, value, react_user_id} = req.body;
-	const topTenRank = rank.getTopTenRank(rank.getAllRank());
-	const resTopTen = rank.showRank(topTenRank);
+	// const topTenRank = rank.getTopTenRank(rank.getAllRank());
+	// const resTopTen = rank.showRank(topTenRank);
 
 	switch (action_name) {
 		// [천하제일 사내 가위바위보] [다음 라운드로]
