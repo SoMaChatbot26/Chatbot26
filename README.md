@@ -2,7 +2,7 @@
 <h1 align='center'>:tada: ~ 천하제일 사내대회 ~ :tada:</h1>
 
 <p align="center">
-<img width='60%' src="https://user-images.githubusercontent.com/54823396/116352019-88623980-a82f-11eb-8449-5c4542105774.png" />
+<img width='80%' src="https://user-images.githubusercontent.com/54823396/116352019-88623980-a82f-11eb-8449-5c4542105774.png" />
 </p>
 
 <p align='center'>
@@ -35,7 +35,7 @@
 ## 🤔 How to use
 ### 1. 가위바위보 게임
 <p align="center">
-<img width="544" alt="image" src="https://user-images.githubusercontent.com/54823396/116364389-1eea2700-a83f-11eb-988e-f044de0b459f.png">
+<img src="https://user-images.githubusercontent.com/54823396/116364389-1eea2700-a83f-11eb-988e-f044de0b459f.png">
 </p>
 
 (1) 메인 메세지입니다. ```가위 바위 보```를 클릭하면 게임에 진입할 수 있습니다.
