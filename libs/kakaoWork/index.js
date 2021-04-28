@@ -30,3 +30,18 @@ exports.sendMessage = async ({ conversationId, text, blocks }) => {
   const res = await kakaoInstance.post('/v1/messages.send', data);
   return res.data.message;
 };
+	
+exports.getUserByEmail = async ({ email }) => {
+	const data = {
+		params: {
+			email: email,
+		}
+	};
+	const res = await kakaoInstance.get('/v1/users.find_by_email', data);
+	return res.data.user;
+};
+	
+exports.getUserInfo = async ({ user_id }) => {
+	const res = await kakaoInstance.get('/v1/users.info?user_id='+user_id);
+	return res.data.user;
+};
