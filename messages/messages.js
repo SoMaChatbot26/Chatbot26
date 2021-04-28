@@ -9,7 +9,7 @@ const mainMsg = (conversationId) => {
 			},
 			{
 			  "type": "text",
-			  "text": "*어떤 게임을 고르시겠습니까?*",
+			  "text": "*우리 회사 가위바위보 짱이 되어보세요!*",
 			  "markdown": true
 			},
 			{
@@ -17,8 +17,8 @@ const mainMsg = (conversationId) => {
 			  "action_type": "submit_action",
 			  "action_name": "participate_rsp",
 			  "value": "rsp",
-			  "text": "천하제일 사내 가위바위보",
-			  "style": "default"
+			  "text": "가위 바위 보",
+			  "style": "primary"
 			},
 			{
 			  "type": "divider"
@@ -77,7 +77,7 @@ const rspMsg = (conversationId) => {
 			  "action_type": "submit_action",
 			  "action_name": "show_main",
 			  "value": "cancel",
-			  "text": "포기하기",
+			  "text": "포기하기 👻",
 			  "style": "danger"
 			}
 		]
@@ -249,46 +249,34 @@ const loseMsg = (conversationId, msg, winCnt, drawCnt, condition) => {
 const rankResMsg = (conversationId , res) => {
 	return {
 		conversationId,
-		text: "랭킹 보기",
+		text: "랭킹 확인",
 		blocks: [
 			{
-			  "type": "text",
-			  "text": "*천하제일 사내대회 가위바위보 랭킹*",
-			  "markdown": true
+				type: "image_link",
+				url: "https://swm-chatbot-maoezt-okflk2.run.goorm.io/banner_rank.png"
 			},
 			{
-			  "type": "divider"
-			},
-			{
-			  "type": "text",
-			  "text": res,
-			  "markdown": true
-			},
-			{
-			  "type": "button",
-			  "text": "랭킹 더보기",
-			  "action_type": "call_modal",
-			  "value": "show_rank_detail",
-			  "style": "default"
+				"type": "text",
+				"text": res,
+				"markdown": true
 			},
 			{
 			  "type": "action",
 			  "elements": [
 				{
-				  "type": "button",
-				  "text": "메인 페이지로",
-				  "action_type": "submit_action",
-				  "action_name": "show_main",
-				  "value": "main",
-				  "style": "primary"
+					"type": "button",
+					"text": "메인 페이지로",
+					"action_type": "submit_action",
+					"action_name": "show_main",
+					"value": "main",
+					"style": "default"
 				},
 				{
-				  "type": "button",
-				  "text": "게임 끝내기",
-				  "action_type": "submit_action",
-				  "action_name": "show_main",
-				  "value": "finish",
-				  "style": "danger"
+					"type": "button",
+					"text": "랭킹 더보기",
+					"action_type": "call_modal",
+					"value": "show_rank_detail",
+					"style": "primary"
 				}
 			  ]
 			},
@@ -296,4 +284,41 @@ const rankResMsg = (conversationId , res) => {
 	};
 }
 
-module.exports = { mainMsg, rspMsg, winMsg, drawMsg, loseMsg, rankResMsg };
+const ruleMsg = (conversationId) => {
+	return {
+		conversationId,
+		text: "게임 설명",
+		blocks: [
+			{
+				type: "image_link",
+				url: "https://swm-chatbot-maoezt-okflk2.run.goorm.io/banner_rule.png"
+			},
+			{
+    			"type": "text",
+    			"text": "*가위바위보*\n(1) 메인 메시지에서 가위바위보 버튼을 누르세요\n(2) 가위, 바위, 보 중 원하는 버튼을 누르세요.\n(3) 패배할 때까지 게임을 계속할 수 있어요.\n(4) 승리는 2점, 무승부는 1점을 받고 최종 점수가 랭킹에 등록됩니다.",
+    		"markdown": true
+    		},
+    		{
+    			"type": "divider"
+			},
+    		{
+    			"type": "text",
+    			"text": "*랭킹 확인*\n(1) 우리 회사 가위바위보 짱이 누구인지 확인해보세요!\n(2) 랭킹 더보기를 누르면 전체 목록을 확인할 수 있어요.",
+    			"markdown": true
+			},
+    		{
+      			"type": "divider"
+    		},
+			{
+			  "type": "button",
+			  "action_type": "submit_action",
+			  "action_name": "show_main",
+			  "value": "main",
+			  "text": "메인 페이지로",
+			  "style": "default"
+			},
+		]
+	};
+}
+
+module.exports = { mainMsg, rspMsg, winMsg, drawMsg, loseMsg, rankResMsg, ruleMsg };

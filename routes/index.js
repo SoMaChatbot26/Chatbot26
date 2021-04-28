@@ -4,8 +4,7 @@ const router = express.Router();
 
 const libKakaoWork = require('../libs/kakaoWork');
 
-const {getRSPGreetingMessage, getMainGreetingMessage, getRSPMessage} = require('../data/messages')
-const { mainMsg, rspMsg, winMsg, drawMsg, loseMsg, rankResMsg } = require('../messages/messages');
+const { mainMsg, rspMsg, winMsg, drawMsg, loseMsg, rankResMsg, ruleMsg } = require('../messages/messages');
 const {rankResModal} = require('../modals/modals');
 
 const { rsp } = require('../games/rsp-game');
@@ -150,9 +149,8 @@ router.post('/callback', async (req, res, next) => {
 			await libKakaoWork.sendMessage(rankResMsg(message.conversation_id, resTopTen));
 			break;
 		// [천하제일 게임 룰 설명]
-		case 'rule':
-			// TODO: 룰 설명하는 메세지 보내기
-			// await libKakaoWork.sendMessage(ruleMsg(message.conversation_id));
+		case 'show_rule_info':
+			await libKakaoWork.sendMessage(ruleMsg(message.conversation_id));
 			break;
 		default:
 			break;
