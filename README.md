@@ -1,4 +1,3 @@
-![무제](https://user-images.githubusercontent.com/54823396/116374931-bce2ef00-a849-11eb-87d0-aa9dd45d8b4c.png)
 <p align='right'><code>SW마에스트로 12기 미니 프로젝트 26팀</code></p>
 <h1 align='center'>:tada: ~ 천하제일 사내대회 ~ :tada:</h1>
 
