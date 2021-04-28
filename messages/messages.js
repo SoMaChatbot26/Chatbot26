@@ -4,13 +4,8 @@ const mainMsg = (conversationId) => {
 		text : "천하제일 사내대회",
 		blocks : [
 			{
-			  "type": "header",
-			  "text": "천하제일 사내대회",
-			  "style": "blue"
-			},
-			{
 				type: "image_link",
-				url: "https://swm-chatbot-maoezt-okflk2.run.goorm.io/img_cjsd_banner360p.png"
+				url: "https://swm-chatbot-maoezt-okflk2.run.goorm.io/banner_main.png"
 			},
 			{
 			  "type": "text",
@@ -33,7 +28,7 @@ const mainMsg = (conversationId) => {
 			  "action_type": "submit_action",
 			  "action_name": "show_rank_info",
 			  "value": "rank",
-			  "text": "천하제일 사내 랭킹 보기",
+			  "text": "랭킹 확인",
 			  "style": "default"
 			},
 			{
@@ -41,7 +36,7 @@ const mainMsg = (conversationId) => {
 			  "action_type": "submit_action",
 			  "action_name": "show_rule_info",
 			  "value": "rule",
-			  "text": "천하제일 게임 룰 설명",
+			  "text": "게임 설명",
 			  "style": "default"
 			}
 		]
@@ -53,19 +48,6 @@ const rspMsg = (conversationId) => {
 		conversationId,
 		text: "천하제일 사내 가위바위보",
 		blocks: [
-			{
-			  "type": "header",
-			  "text": "천하제일 사내 가위바위보",
-			  "style": "blue"
-			},
-			{
-			  "type": "text",
-			  "text": "가위바위보!",
-			  "markdown": true
-			},
-			{
-			  "type": "divider"
-			},
 			{
 			  "type": "button",
 			  "action_type": "submit_action",
@@ -91,9 +73,6 @@ const rspMsg = (conversationId) => {
 			  "style": "default"
 			},
 			{
-			  "type": "divider"
-			},
-			{
 			  "type": "button",
 			  "action_type": "submit_action",
 			  "action_name": "show_main",
@@ -105,35 +84,44 @@ const rspMsg = (conversationId) => {
 	};
 }
 
-const winMsg = (conversationId, msg, winCnt, drawCnt) => {
+const winMsg = (conversationId, msg, winCnt, drawCnt, condition) => {
 	return {
 		conversationId,
-		text: "당신이 이겼습니다",
+		text: "승리",
 		blocks: [
 			{
-			  "type": "header",
-			  "text": "천하제일 가위바위보",
-			  "style": "blue"
+				type: "image_link",
+				url: "https://swm-chatbot-maoezt-okflk2.run.goorm.io/result_win_" + condition + ".png"
 			},
 			{
-			  "type": "text",
-			  "text": msg,
-			  "markdown": true
+				"type": "description",
+				"term": "승리",
+				"content": {
+					"type": "text",
+					"text": winCnt + "회",
+					"markdown": false
+				},
+				"accent": true
 			},
 			{
-			  "type": "text",
-			  "text": "이긴 횟수 : " + winCnt,
-			  "markdown": true
+				"type": "description",
+				"term": "비김",
+				"content": {
+					"type": "text",
+					"text": drawCnt + "회",
+					"markdown": false
+				},
+				"accent": true
 			},
 			{
-			  "type": "text",
-			  "text": "비긴 횟수 : " + drawCnt,
-			  "markdown": true
-			},
-			{
-				"type": "text",
-				"text": "현재 점수 : " + (parseInt(winCnt) * 2 + parseInt(drawCnt)),
-				"markdown": true
+				"type": "description",
+				"term": "점수",
+				"content": {
+					"type": "text",
+					"text": (parseInt(winCnt) * 2 + parseInt(drawCnt)) + "점",
+					"markdown": false
+				},
+				"accent": true
 			},
 			{
 			  "type": "divider"
@@ -150,35 +138,98 @@ const winMsg = (conversationId, msg, winCnt, drawCnt) => {
 	};
 }
 
-const loseMsg = (conversationId, msg, winCnt, drawCnt) => {
+const drawMsg = (conversationId, msg, winCnt, drawCnt, condition) => {
 	return {
 		conversationId,
-		text: "봇이 이겼습니다",
+		text: "무승부",
 		blocks: [
 			{
-			  "type": "header",
-			  "text": "천하제일 가위바위보",
-			  "style": "blue"
+				type: "image_link",
+				url: "https://swm-chatbot-maoezt-okflk2.run.goorm.io/result_draw_" + condition + ".png"
 			},
 			{
-			  "type": "text",
-			  "text": msg,
-			  "markdown": true
+				"type": "description",
+				"term": "승리",
+				"content": {
+					"type": "text",
+					"text": winCnt + "회",
+					"markdown": false
+				},
+				"accent": true
 			},
 			{
-			  "type": "text",
-			  "text": "이긴 횟수 : " + winCnt,
-			  "markdown": true
+				"type": "description",
+				"term": "비김",
+				"content": {
+					"type": "text",
+					"text": drawCnt + "회",
+					"markdown": false
+				},
+				"accent": true
 			},
 			{
-			  "type": "text",
-			  "text": "비긴 횟수 : " + drawCnt,
-			  "markdown": true
+				"type": "description",
+				"term": "점수",
+				"content": {
+					"type": "text",
+					"text": (parseInt(winCnt) * 2 + parseInt(drawCnt)) + "점",
+					"markdown": false
+				},
+				"accent": true
 			},
 			{
-				"type": "text",
-				"text": "최종 점수 : " + (parseInt(winCnt) * 2 + parseInt(drawCnt)),
-				"markdown": true
+			  "type": "divider"
+			},
+			{
+			  "type": "button",
+			  "action_type": "submit_action",
+			  "action_name": "go_next_round",
+			  "value": "next_round",
+			  "text": "다음 라운드로",
+			  "style": "default"
+			}
+		]
+	};
+}
+
+const loseMsg = (conversationId, msg, winCnt, drawCnt, condition) => {
+	return {
+		conversationId,
+		text: "패배",
+		blocks: [
+			{
+				type: "image_link",
+				url: "https://swm-chatbot-maoezt-okflk2.run.goorm.io/result_lose_" + condition + ".png"
+			},
+			{
+				"type": "description",
+				"term": "승리",
+				"content": {
+					"type": "text",
+					"text": winCnt + "회",
+					"markdown": false
+				},
+				"accent": true
+			},
+			{
+				"type": "description",
+				"term": "비김",
+				"content": {
+					"type": "text",
+					"text": drawCnt + "회",
+					"markdown": false
+				},
+				"accent": true
+			},
+			{
+				"type": "description",
+				"term": "최종점수",
+				"content": {
+					"type": "text",
+					"text": (parseInt(winCnt) * 2 + parseInt(drawCnt)) + "점",
+					"markdown": false
+				},
+				"accent": true
 			},
 			{
 			  "type": "divider"
@@ -188,7 +239,7 @@ const loseMsg = (conversationId, msg, winCnt, drawCnt) => {
 			  "action_type": "submit_action",
 			  "action_name": "show_main",
 			  "value": "retry",
-			  "text": "재도전 - 메인페이지로",
+			  "text": "메인으로",
 			  "style": "default"
 			}
 		]
@@ -245,4 +296,4 @@ const rankResMsg = (conversationId , res) => {
 	};
 }
 
-module.exports = { mainMsg, rspMsg, winMsg, loseMsg, rankResMsg };
+module.exports = { mainMsg, rspMsg, winMsg, drawMsg, loseMsg, rankResMsg };

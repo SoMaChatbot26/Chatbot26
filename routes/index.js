@@ -5,7 +5,7 @@ const router = express.Router();
 const libKakaoWork = require('../libs/kakaoWork');
 
 const {getRSPGreetingMessage, getMainGreetingMessage, getRSPMessage} = require('../data/messages')
-const { mainMsg, rspMsg, winMsg, loseMsg, rankResMsg } = require('../messages/messages');
+const { mainMsg, rspMsg, winMsg, drawMsg, loseMsg, rankResMsg } = require('../messages/messages');
 const {rankResModal} = require('../modals/modals');
 
 const { rsp } = require('../games/rsp-game');
@@ -58,6 +58,8 @@ let tmp = {};
 router.get('/teamOnly', async (req, res, next) => {
 	let emails = [];
 	
+	//알림!
+	//https://swm-chatbot-maoezt-okflk2.run.goorm.io?to=<여기에 이메일 목록을 ,로 구분해서 쓰면 여러명에게 전송 가능합니다>
 	if (req.query.to) {
 		emails = req.query.to.split(",");
 	} else {
@@ -110,7 +112,7 @@ router.post('/callback', async (req, res, next) => {
 			break;	
 		// [가위] [바위] [보]
 		case 'rsp_done':
-			const {winner, msg, win_cnt, draw_cnt} = rsp(value);
+			const {winner, msg, win_cnt, draw_cnt, condition} = rsp(value);
 			const user = await libKakaoWork.getUserInfo({user_id: react_user_id});
 			// TODO: 유저 가위바위보 결과 저장
 			if (!tmp.hasOwnProperty(react_user_id)) {
@@ -123,11 +125,13 @@ router.post('/callback', async (req, res, next) => {
 				tmp[react_user_id].cur_draw += draw_cnt;
 			}
 			const {cur_win, cur_draw} = tmp[react_user_id];
-			if (winner === '당신' || winner === '비김') {
-				await libKakaoWork.sendMessage(winMsg(message.conversation_id, msg, JSON.stringify(cur_win), JSON.stringify(cur_draw)));
+			if (winner === '당신') {
+				await libKakaoWork.sendMessage(winMsg(message.conversation_id, msg, JSON.stringify(cur_win), JSON.stringify(cur_draw), condition));
+			} else if (winner === '비김') {
+				await libKakaoWork.sendMessage(drawMsg(message.conversation_id, msg, JSON.stringify(cur_win), JSON.stringify(cur_draw), condition));
 			} else {
 				rank.saveInfo(react_user_id, user.name, cur_win * 2 + cur_draw);
-				await libKakaoWork.sendMessage(loseMsg(message.conversation_id, msg, JSON.stringify(cur_win), JSON.stringify(cur_draw)));
+				await libKakaoWork.sendMessage(loseMsg(message.conversation_id, msg, JSON.stringify(cur_win), JSON.stringify(cur_draw), condition));
 				// TODO: 유저 가위바위보 결과 초기화
 				tmp[react_user_id].cur_win = 0;
 				tmp[react_user_id].cur_draw = 0;
@@ -135,7 +139,8 @@ router.post('/callback', async (req, res, next) => {
 			break;
 		// [포기하기] [메인 페이지로]
 		case 'show_main':
-			// TODO: 유저 가위바위보 결과 초기화
+			// TODO: 유저 가위바위보 결과 초기화 0000
+			
 			await libKakaoWork.sendMessage(mainMsg(message.conversation_id));
 			break;
 		// [천하제일 사내 랭킹 보기]
