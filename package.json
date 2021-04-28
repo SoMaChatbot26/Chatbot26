@@ -6,7 +6,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "NODE_ENV=development NODE_CONFIG_DIR=./configs/app node app"
+    "start": "NODE_ENV=development NODE_CONFIG_DIR=./configs/app node app",
+	"dev": "NODE_ENV=development NODE_CONFIG_DIR=./configs/app nodemon app"
   },
   "author": "soma26",
   "license": "ISC",
@@ -16,11 +17,12 @@
   "homepage": "https://github.com/SomaChatbot26/ChatBot26#readme",
   "dependencies": {
     "axios": "^0.21.1",
-    "config": "^3.3.6",
-    "express": "^4.17.1",
     "body-parser": "~1.18.2",
+    "config": "^3.3.6",
     "cookie-parser": "~1.4.3",
     "debug": "~2.6.9",
-    "morgan": "~1.9.0"
+    "express": "^4.17.1",
+    "morgan": "~1.9.0",
+    "nodemon": "^2.0.7"
   }
 }
