@@ -45,3 +45,15 @@ exports.getUserInfo = async ({ user_id }) => {
 	const res = await kakaoInstance.get('/v1/users.info?user_id='+user_id);
 	return res.data.user;
 };
+
+// 전체 유저 목록 검색
+exports.getAllUserList = async () => {
+	let res = await kakaoInstance.get('/v1/users.list?limit=100');
+	let { users, cursor } = res.data;
+	while (cursor) {
+		res = await kakaoInstance.get('/v1/users.list?cursor='+cursor);
+		users.push(...res.data.users);
+		cursor = res.data.cursor;
+	}
+	return users;
+};

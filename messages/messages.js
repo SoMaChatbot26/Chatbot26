@@ -9,7 +9,7 @@ const mainMsg = (conversationId) => {
 			},
 			{
 			  "type": "text",
-			  "text": "*우리 회사 가위바위보 짱이 되어보세요!*",
+			  "text": "*우리 회사 가위바위보 짱이 되어보세요!*\n\n(1) 가위바위보 랭킹 1등에게는 *커피 기프티콘*을 드립니다.\n(2) 최초의 로또 1등 당첨자에게도 *커피 기프티콘*을 드립니다\n",
 			  "markdown": true
 			},
 			{
@@ -17,7 +17,15 @@ const mainMsg = (conversationId) => {
 			  "action_type": "submit_action",
 			  "action_name": "participate_rsp",
 			  "value": "rsp",
-			  "text": "가위 바위 보",
+			  "text": "천하제일 가위바위보",
+			  "style": "primary"
+			},
+			{
+			  "type": "button",
+			  "action_type": "call_modal",
+			  "action_name": "participate_lotto",
+			  "value": "lotto",
+			  "text": "천하제일 로또 추첨",
 			  "style": "primary"
 			},
 			{
@@ -126,13 +134,38 @@ const winMsg = (conversationId, msg, winCnt, drawCnt, condition) => {
 			{
 			  "type": "divider"
 			},
+			
 			{
 			  "type": "button",
 			  "action_type": "submit_action",
-			  "action_name": "go_next_round",
-			  "value": "next_round",
-			  "text": "다음 라운드로",
+			  "action_name": "rsp_done",
+			  "value": "0",
+			  "text": "가위 ✌",
 			  "style": "default"
+			},
+			{
+			  "type": "button",
+			  "action_type": "submit_action",
+			  "action_name": "rsp_done",
+			  "value": "1",
+			  "text": "바위 ✊",
+			  "style": "default"
+			},
+			{
+			  "type": "button",
+			  "action_type": "submit_action",
+			  "action_name": "rsp_done",
+			  "value": "2",
+			  "text": "보 🖐",
+			  "style": "default"
+			},
+			{
+			  "type": "button",
+			  "action_type": "submit_action",
+			  "action_name": "show_main",
+			  "value": "cancel",
+			  "text": "포기하기 👻",
+			  "style": "danger"
 			}
 		]
 	};
@@ -180,13 +213,38 @@ const drawMsg = (conversationId, msg, winCnt, drawCnt, condition) => {
 			{
 			  "type": "divider"
 			},
+			
 			{
 			  "type": "button",
 			  "action_type": "submit_action",
-			  "action_name": "go_next_round",
-			  "value": "next_round",
-			  "text": "다음 라운드로",
+			  "action_name": "rsp_done",
+			  "value": "0",
+			  "text": "가위 ✌",
 			  "style": "default"
+			},
+			{
+			  "type": "button",
+			  "action_type": "submit_action",
+			  "action_name": "rsp_done",
+			  "value": "1",
+			  "text": "바위 ✊",
+			  "style": "default"
+			},
+			{
+			  "type": "button",
+			  "action_type": "submit_action",
+			  "action_name": "rsp_done",
+			  "value": "2",
+			  "text": "보 🖐",
+			  "style": "default"
+			},
+			{
+			  "type": "button",
+			  "action_type": "submit_action",
+			  "action_name": "show_main",
+			  "value": "cancel",
+			  "text": "포기하기 👻",
+			  "style": "danger"
 			}
 		]
 	};
@@ -275,7 +333,7 @@ const rankResMsg = (conversationId , res) => {
 					"type": "button",
 					"text": "랭킹 더보기",
 					"action_type": "call_modal",
-					"value": "show_rank_detail",
+					"value": "rank_detail",
 					"style": "primary"
 				}
 			  ]
@@ -320,5 +378,7 @@ const ruleMsg = (conversationId) => {
 		]
 	};
 }
+
+
 
 module.exports = { mainMsg, rspMsg, winMsg, drawMsg, loseMsg, rankResMsg, ruleMsg };
