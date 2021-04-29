@@ -1,6 +1,7 @@
 node_modules/
 configs/
 .DS_Store
+config/
 
 # Created by https://www.toptal.com/developers/gitignore/api/node,vscode
 # Edit at https://www.toptal.com/developers/gitignore?templates=node,vscode
