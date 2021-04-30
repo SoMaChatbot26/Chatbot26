@@ -1,19 +1,32 @@
 const rankResModal = (res) => {
-	return {
+	let result = res.split("\n");
+	
+	const ret = {
 		view : {
 			"title": "천하제일 사내 랭킹",
 			"accept": "확인",
 			"decline": "취소",
 			"value": "check_rank_detail",
 			"blocks": [
-				{
-					"type": "label",
-					"text": res,
-					"markdown": true
-				}
+				
 			]
 		}
-	};
+	}
+	
+	let temp = [];
+	for (let i=0 ; i<result.length ; i++) {
+		temp.push(result[i]);
+		if (i%10 == 0 && i>0) {
+			ret.view.blocks.push({
+					"type": "label",
+					"text": temp.join("\n"),
+					"markdown": true
+				});
+			temp = [];
+		}
+	}
+	
+	return ret;
 }
 
 const lottoModal = {

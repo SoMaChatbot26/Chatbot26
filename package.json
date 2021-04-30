@@ -6,8 +6,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "NODE_ENV=development NODE_CONFIG_DIR=./configs/app node app",
-    "dev": "NODE_ENV=development NODE_CONFIG_DIR=./configs/app nodemon app"
+    "start": "NODE_ENV=development NODE_CONFIG_DIR=./config node app",
+    "dev": "NODE_ENV=development NODE_CONFIG_DIR=./config nodemon app"
   },
   "author": "soma26",
   "license": "ISC",

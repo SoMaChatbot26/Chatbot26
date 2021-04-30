@@ -1,12 +1,16 @@
+// let usersInfo = [];
+
 let usersInfo = [];
 
+
 exports.showRank = (rankInfo) => {
+	console.log(usersInfo);
 	if(!rankInfo.length)
 		return '랭킹이 아직 없습니다';
 	
 	let ret = ``;
 	for (let info of rankInfo) {
-		ret += `${info.rank}등` + '\t' + `${info.name}`+ '\t' +`점수 : ${info.point}\n`;
+		ret += `${info.rank}등` + '  ' + `${info.name}`+ ' : ' +`${info.point}점\n`;
 	}
 	
 	return ret
