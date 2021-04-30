@@ -1,7 +1,7 @@
 const mainMsg = (conversationId) => {
 	return {
 		conversationId,
-		text : "천하제일 사내대회",
+		text : "26팀 천하제일 사내대회",
 		blocks : [
 			{
 				type: "image_link",
@@ -46,7 +46,7 @@ const mainMsg = (conversationId) => {
 			  "value": "rule",
 			  "text": "게임 설명",
 			  "style": "default"
-			}
+			},
 		]
 	};
 }
@@ -342,7 +342,7 @@ const rankResMsg = (conversationId , res) => {
 	};
 }
 
-const ruleMsg = (conversationId) => {
+const ruleMsg = (conversationId, rspGameCount, lottoGameCount) => {
 	return {
 		conversationId,
 		text: "게임 설명",
@@ -353,7 +353,15 @@ const ruleMsg = (conversationId) => {
 			},
 			{
     			"type": "text",
-    			"text": "*가위바위보*\n(1) 메인 메시지에서 가위바위보 버튼을 누르세요\n(2) 가위, 바위, 보 중 원하는 버튼을 누르세요.\n(3) 패배할 때까지 게임을 계속할 수 있어요.\n(4) 승리는 2점, 무승부는 1점을 받고 최종 점수가 랭킹에 등록됩니다.",
+    			"text": "*가위바위보*\n(1) 가위, 바위, 보를 골라 패배할 때까지 계속할 수 있어요.\n(2) 승리는 2점, 무승부는 1점을 받고 최종 점수가 랭킹에 등록됩니다.\n(3) 최종 1등을 하신분께는 커피 기프티콘을 드려요 :)",
+    		"markdown": true
+    		},
+    		{
+    			"type": "divider"
+			},
+			{
+    			"type": "text",
+    			"text": "*로또 추첨*\n(1) 1~5의 숫자 3개를 고르고 추첨해주세요.\n(2) 처음으로 당첨된 분께는 커피 기프티콘을 드려요 :)",
     		"markdown": true
     		},
     		{
@@ -364,6 +372,26 @@ const ruleMsg = (conversationId) => {
     			"text": "*랭킹 확인*\n(1) 우리 회사 가위바위보 짱이 누구인지 확인해보세요!\n(2) 랭킹 더보기를 누르면 전체 목록을 확인할 수 있어요.",
     			"markdown": true
 			},
+    		{
+      			"type": "divider"
+    		},
+			{
+    			"type": "text",
+    			"text": `*누적 참여수*\n가위바위보 - *${rspGameCount}회*\n로또 추첨 - *${lottoGameCount}회*`,
+    		"markdown": true
+    		},
+    		{
+    			"type": "context",
+    			"content": {
+					"type": "text",
+        			"text": "[GitHub에서 ReadMe 읽어보기](https://github.com/SomaChatbot26/Chatbot26)",
+        			"markdown": true
+    			},
+      			"image": {
+        			"type": "image_link",
+        			"url": "https://swm-chatbot-maoezt-okflk2.run.goorm.io/ic_github2.png"
+      			}
+    		},
     		{
       			"type": "divider"
     		},

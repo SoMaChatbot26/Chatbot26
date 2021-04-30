@@ -13,6 +13,9 @@ const rank = require('../rank-server');
 
 let db = {};
 
+let rspGameCount = 0;
+let lottoGameCount = 0;
+
 // 워크스페이스의 모든 유저에게 초기 메세지 전송
 router.post('/chatbot', async (req, res, next) => {
 	const users = await libKakaoWork.getAllUserList();
@@ -91,6 +94,8 @@ router.post('/callback', async (req, res, next) => {
 			break;	
 		// [가위] [바위] [보]
 		case 'rsp_done':
+			rspGameCount += 1;
+			
 			const {winner, msg, win_cnt, draw_cnt, condition} = rsp(value);
 			const user = await libKakaoWork.getUserInfo({user_id: react_user_id});
 			// 유저 가위바위보 결과 저장
@@ -133,7 +138,7 @@ router.post('/callback', async (req, res, next) => {
 			break;
 		// [천하제일 게임 룰 설명]
 		case 'show_rule_info':
-			await libKakaoWork.sendMessage(ruleMsg(message.conversation_id));
+			await libKakaoWork.sendMessage(ruleMsg(message.conversation_id, rspGameCount, lottoGameCount));
 			break;	
 		default:
 			break;
@@ -142,7 +147,8 @@ router.post('/callback', async (req, res, next) => {
 	switch (value) {
 		// 천하제일 로또 추첨 결과 발표	
 		case 'lotto':
-			await libKakaoWork.sendMessage(lottoController.lotto_game(message.conversation_id, actions.lotto_choice1, actions.lotto_choice2, actions.lotto_choice3)); 	
+			lottoGameCount += 1;
+			await libKakaoWork.sendMessage(lottoController.lotto_game(message.conversation_id, actions.lotto_choice1, actions.lotto_choice2, actions.lotto_choice3));
 			break;
 		default:
 			break;
