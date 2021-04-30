@@ -319,25 +319,13 @@ const rankResMsg = (conversationId , res) => {
 				"markdown": true
 			},
 			{
-			  "type": "action",
-			  "elements": [
-				{
-					"type": "button",
-					"text": "메인 페이지로",
-					"action_type": "submit_action",
-					"action_name": "show_main",
-					"value": "main",
-					"style": "default"
-				},
-				{
-					"type": "button",
-					"text": "랭킹 더보기",
-					"action_type": "call_modal",
-					"value": "rank_detail",
-					"style": "primary"
-				}
-			  ]
-			},
+			  "type": "button",
+			  "action_type": "submit_action",
+			  "action_name": "show_main",
+			  "value": "retry",
+			  "text": "메인으로",
+			  "style": "default"
+			}
 		]
 	};
 }
