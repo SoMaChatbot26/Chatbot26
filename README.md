@@ -60,9 +60,9 @@
 
 ### 2. 랭킹 시스템
 
-```랭킹 확인```을 클릭하면 아래와 같이 상위 10명의 랭킹 메세지가 보내집니다.
+```랭킹 확인```을 클릭하면 아래와 같이 **상위 10명**의 랭킹 메세지가 보내집니다.
 
-<img width="224" alt="image" src="https://user-images.githubusercontent.com/54823396/116504626-b14c0280-a8f3-11eb-969d-c40098c6a228.png">
+<img width="228" alt="image" src="https://user-images.githubusercontent.com/54823396/116654336-e2940380-a9c3-11eb-8fb7-48f23807a450.png">
 
 **가위바위보 랭킹 1등에겐 커피 기프티콘을 선물로 드립니다!**
 
